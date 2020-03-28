@@ -29,22 +29,23 @@ const Noticas = (props) => {
 
     return (                 
         <Container style={styles.container}>        
-        <Header style={styles.header}>
-          <Left style={{flexGrow : 1}}>
-            <Button transparent onPress={() => props.navigation.toggleDrawer()}>
-              <Icon name='menu' />
-            </Button>
-          </Left>          
-          <Body style={{flexGrow: 2, justifyContent: 'center', alignItems: 'center'}}>
-            <Title>Últimas Noticas</Title>            
-          </Body> 
-          <Right style={{flexGrow : 1}}>
-            <Button transparent onPress={() => props.navigation.toggleDrawer()}>
-              <Icon name='menu' />
-            </Button>
-          </Right>         
-        </Header>        
-        <Content>
+          
+          <Header style={styles.header}>
+            <Left style={{flexGrow : 1}}>
+              <Button transparent onPress={() => props.navigation.toggleDrawer()}>
+                <Icon name='menu' />
+              </Button>
+            </Left>          
+            <Body style={{flexGrow: 2, justifyContent: 'center', alignItems: 'center'}}>
+              <Title>Últimas Noticas</Title>            
+            </Body> 
+            <Right style={{flexGrow : 1}}>
+              <Button transparent onPress={() => props.navigation.toggleDrawer()}>
+                <Icon name='menu' />
+              </Button>
+            </Right>         
+          </Header>        
+          <Content>
 
           <Card style={styles.cardFormulario}>
             <CardItem style={styles.headerEligaCategoria} >
