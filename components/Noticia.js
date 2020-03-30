@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext, } from 'react';
 import { Image, View, StyleSheet, Linking  } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Title, Subtitle } from 'native-base';
 
 const Noticia = ({noticia}) => {   
 
     //extraer los datos de las noticas
-    const {urlToImage, url, title, description, source} = noticia;        
+    const {urlToImage, url, title, description, source} = noticia;     
 
     return ( 
         <Card style = { styles.card}>            

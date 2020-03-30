@@ -1,31 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Image, View, StyleSheet, Dimensions } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Button, Icon, Body, Title, Picker, Form, Left, Right } from 'native-base';
 import Noticia from './Noticia';
+import SourceContext from '../context/source/sourceContext';
 
 
 const Noticas = (props) => { 
   
-    const [noticias, guardarNoticias] = useState([]);
+    const [noticias, guardarNoticias] = useState([]);    
     const [categoriaSel, guardarCategoriaSel] = useState('');
-  
-    const consultarNoticias = async (categoria = 'general') => {      
-      const url = `https://newsapi.org/v2/top-headlines?country=ar&category=${categoria}&apiKey=6589dee2f8644d609371d3d3c2371969`;
-      
-      const respuesta = await fetch(url);
-      const noticias = await respuesta.json();
 
-      guardarNoticias(noticias.articles);
-    }
+    const sourceContext = useContext(SourceContext);
+
+    const {listOfSources, loadListOfSources} = sourceContext;    
+  
+    const consultarNoticias = async (categoria = 'general') => {        
+
+      if(listOfSources.length === 0){        
+        loadListOfSources();
+      }
+
+      const url = `https://newsapi.org/v2/top-headlines?country=ar&category=${categoria}&apiKey=d6a40d4a56be498b8d80ee9173f9ee19`;      
+                  
+      const respuesta = await fetch(url);
+      const noticias = await respuesta.json();    
+
+      let articles = [];
+      let sources = [];    
+
+      listOfSources.map(source => (
+        source.added ? sources.push(source.key) : null
+      ))
+
+      noticias.articles.map(article => (
+          sources.includes(article.source.name) ? articles.push(article) : null
+      ))      
+      guardarNoticias(articles);
+    }   
 
     const handleChange = cat => {      
       guardarCategoriaSel(cat);
       consultarNoticias(cat);
     }
 
-    useEffect( ()=> {
-      consultarNoticias();
-    }, []);
+    useEffect( ()=> {                                  
+        consultarNoticias();              
+    }, [listOfSources]);    
 
     return (                 
         <Container style={styles.container}>        
@@ -75,7 +95,7 @@ const Noticas = (props) => {
             </CardItem>
           </Card>
 
-          {noticias.map(noticia => (
+          {noticias.map(noticia => (               
               <Noticia  
                 key={noticia.url}          
                 noticia={noticia}

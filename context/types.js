@@ -1,3 +1,3 @@
 export const LOAD_LIST_SOURCES = 'LOAD_LIST_SOURCES';
 export const ADD_SOURCE = 'ADD_SOURCE';
-export const REMOVE_SOURCE = 'REMOVE_SOURCE';
+export const END_OF_UPDATE = 'END_OF_UPDATE';

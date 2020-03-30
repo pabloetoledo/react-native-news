@@ -7,15 +7,20 @@ const Config = (props) => {
     
     const sourceContext = useContext(SourceContext);
 
-    const {listOfSources, loadListOfSources, addOrRemoveSource} = sourceContext;
+    const {loading, update, listOfSources, loadListOfSources, addOrRemoveSource, updateListOfSources} = sourceContext;
 
     const handleSelectedSource = source => {
-        addOrRemoveSource(source);
+        addOrRemoveSource(source);        
     }
 
     useEffect( () => {
-        loadListOfSources();
-    }, [])
+        if(loading){
+            loadListOfSources();
+        }
+        if(update){
+            updateListOfSources();
+        }
+    }, [loading, update]);
 
     return ( 
         <Container style={styles.container}>
