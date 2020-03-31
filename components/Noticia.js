@@ -9,13 +9,18 @@ const Noticia = ({noticia}) => {
 
     return ( 
         <Card style = { styles.card}>            
-            <CardItem header bordered>
-              <Image 
-                 source={{
-                    uri: urlToImage,
-                 }} 
-                 style={{height: 200, width: null, flex: 1}}/>
-            </CardItem>
+            
+            {urlToImage !== '' ?
+                (
+                    <CardItem header bordered>
+                      <Image 
+                        source={{
+                            uri: urlToImage,
+                        }} 
+                        style={{height: 200, width: null, flex: 1}}/>
+                    </CardItem>
+                ) : null
+            }
 
             <CardItem bordered>                                                                   
               <Body>

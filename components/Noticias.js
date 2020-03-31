@@ -23,7 +23,7 @@ const Noticas = (props) => {
       const url = `https://newsapi.org/v2/top-headlines?country=ar&category=${categoria}&apiKey=d6a40d4a56be498b8d80ee9173f9ee19`;      
                   
       const respuesta = await fetch(url);
-      const noticias = await respuesta.json();    
+      const noticias = await respuesta.json();
 
       let articles = [];
       let sources = [];    
